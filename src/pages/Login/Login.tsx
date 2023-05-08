@@ -1,15 +1,11 @@
 import React from 'react'
 import './Login.css';
-import {useNavigate} from 'react-router';
 import Logo from "../../img/logo(dark).svg";
 import LogoText from "../../img/text-logo(dark).png";
-import {Link} from 'react-router-dom';
-import {routes} from '../../Root';
 
 export const Login = () => {
-  const navigate = useNavigate();
   const onLogin = () => {
-    navigate(`https://connect.mail.ru/oauth/authorize?client_id=47beccc8bd8c4b2ba04b08c332d4b2d0&response_type=token&redirect_uri=адрес принимающей страницы на вашем сайте`)
+    document.location.href = 'https://connect.mail.ru/oauth/authorize?client_id=47beccc8bd8c4b2ba04b08c332d4b2d0&response_type=token&redirect_uri=https://master--snazzy-palmier-903703.netlify.app/login';
   }
 
   return (
