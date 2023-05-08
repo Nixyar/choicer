@@ -13,7 +13,8 @@ export const Login = () => {
       nonce = crypto.randomBytes(32).toString('hex');
       document.cookie = `nonce=${nonce}`;
     }
-    fetch(`https://oauth.mail.ru/xlogin?client_id=47beccc8bd8c4b2ba04b08c332d4b2d0&response_type=code&scope=&redirect_uri=https%3A%2F%2Fmaster--snazzy-palmier-903703.netlify.app%2Flogin&state=${nonce}`)
+    fetch(
+        `https://oauth.mail.ru/xlogin?client_id=47beccc8bd8c4b2ba04b08c332d4b2d0&response_type=code&scope=&redirect_uri=https%3A%2F%2Fmaster--snazzy-palmier-903703.netlify.app%2Flogin&state=${nonce}`)
         .then(response => console.log(response))
         .then(data => {
           // Обработка полученных данных
@@ -42,9 +43,7 @@ export const Login = () => {
         </div>
         <div className="login-form">
           <h1 className="login-form__title h1">Добро пожаловать!</h1>
-          <form>
-            <button onClick={onLogin}>Вход через Mail.ru</button>
-          </form>
+          <button type="button" onClick={onLogin}>Вход через Mail.ru</button>
         </div>
       </div>
   )
