@@ -1,0 +1,49 @@
+.create-work__title {
+  width: fit-content;
+  color: var(--dark-grey);
+  padding-right: 60px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--light-grey);
+}
+
+.create-work__form {
+  padding-top: 60px;
+  padding-bottom: 100px;
+  color: var(--light-text);
+  border-bottom: 1px solid var(--light-grey);
+}
+
+.create-work__form p {
+  font-family: Commissioner, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  width: 300px;
+}
+
+.create-work__form-submit {
+  margin-top: 20px;
+}
+
+.create-work__form-submit:hover button {
+  background-color: var(--yellow);
+}
+
+.create-work__form-field {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.create-work__form-control {
+  width: fit-content;
+}
+
+.create-work__form-control button {
+  margin-top: 20px;
+  margin-right: 15px;
+}
+
+.create-work__form-control button:last-child:hover {
+  background-color: #FFF8E6;
+}

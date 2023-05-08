@@ -1,0 +1,54 @@
+.works__create-work {
+  text-align: end;
+}
+
+.works__create-work button {
+  padding-right: 59px;
+  color: var(--pleasant-grey);
+  text-transform: none;
+}
+
+.works__create-work button:hover {
+  border: 2px solid var(--yellow);
+}
+
+.works__create-work button::after {
+  content: '';
+  position: absolute;
+  right: 22px;
+  width: 24px;
+  height: 24px;
+  background: url('../../img/plus.svg') no-repeat;
+}
+
+.works__tabs {
+  display: flex;
+  margin-top: 139px;
+  padding: 0 63px;
+  border-bottom: 1px solid var(--light-grey);
+}
+
+.works__tab {
+  padding: 12px 25px;
+  border-radius: 8px 8px 0 0;
+  color: var(--pleasant-grey);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.works__tab:hover {
+  background: var(--old-lace);
+}
+
+.works__tab.active {
+  background: var(--old-lace);
+}
+
+.works__list {
+  padding: 30px 63px;
+}
+
+.works__list-empty {
+  font-weight: 400;
+  color: var(--space-grey);
+}

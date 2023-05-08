@@ -1,0 +1,20 @@
+.home__filters {
+  padding-bottom: 15px;
+  margin-top: 65px;
+  border-bottom: 1px solid var(--light-grey);
+}
+
+.home__filters-title {
+  margin-bottom: 25px;
+}
+
+.home__filters-items {
+  display: flex;
+}
+
+.home__cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 30px;
+  margin-top: 30px;
+}

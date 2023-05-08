@@ -1,0 +1,41 @@
+import React from 'react'
+import './Login.css';
+import {useNavigate} from 'react-router';
+import Logo from "../../img/logo(dark).svg";
+import LogoText from "../../img/text-logo(dark).png";
+import {Link} from 'react-router-dom';
+import {routes} from '../../Root';
+
+export const Login = () => {
+  const navigate = useNavigate();
+  const onLogin = () => {
+    navigate(`https://connect.mail.ru/oauth/authorize?client_id=47beccc8bd8c4b2ba04b08c332d4b2d0&response_type=token&redirect_uri=адрес принимающей страницы на вашем сайте`)
+  }
+
+  return (
+      <div className="login">
+        <div className="login-information">
+          <div className="login-information__logo">
+            <img src={Logo} alt="Logo"/>
+            <img src={LogoText} alt="choicer."/>
+          </div>
+          <h1 className="login-information__title h1">О сервисе</h1>
+          <p className="login-information__text p2--light">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
+            Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.
+          </p>
+          <p className="p2--light">
+            Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
+            Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.
+          </p>
+        </div>
+        <div className="login-form">
+          <h1 className="login-form__title h1">Добро пожаловать!</h1>
+          <form>
+            <Link to={routes.main}>
+              <button onClick={onLogin}>Вход через Mail.ru</button>
+            </Link>
+          </form>
+        </div>
+      </div>
+  )
+}

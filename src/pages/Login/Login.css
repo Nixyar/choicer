@@ -1,0 +1,45 @@
+.login {
+  display: flex;
+  background: url('../../img/background-logo.png') no-repeat;
+  background-size: cover;
+  height: 100%;
+  color: var(--pleasant-grey);
+}
+
+.login-information {
+  width: 45%;
+  background: var(--white);
+  padding: 60px;
+  opacity: 0.8;
+}
+
+.login-information__logo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 250px;
+  margin-bottom: 124px;
+}
+
+.login-information__title {
+  margin-bottom: 40px;
+}
+
+.login-information__text {
+   margin-bottom: 30px;
+ }
+
+.login-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  box-sizing: border-box;
+  width: 55%;
+  border-left: 20px solid var(--yellow);
+  background-color: var(--white);
+}
+
+.login-form__title {
+  margin-bottom: 50px;
+}

@@ -1,0 +1,30 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 33px;
+}
+
+.header__profile {
+  display: flex;
+  align-items: center;
+}
+
+.header__profile-info {
+  margin-left: 25px;
+  color: var(--pleasant-grey);
+}
+
+.header__works {
+  display: flex;
+  color: var(--pleasant-grey);
+}
+
+.header__works h3 {
+  height: fit-content;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--yellow);
+}
+
+.header__works h3:first-child {
+  margin-right: 40px;
+}

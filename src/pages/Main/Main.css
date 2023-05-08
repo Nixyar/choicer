@@ -1,0 +1,9 @@
+.page {
+  display: flex;
+  height: 100%;
+}
+
+.main {
+  width: calc(100% - 120px);
+  margin: 0 48px 0 195px;
+}

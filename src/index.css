@@ -1,0 +1,21 @@
+@import 'assets/fonts.css';
+@import 'assets/reset.css';
+
+#root {
+  height: 100%;
+  cursor: default;
+}
+
+:root {
+  --old-lace: #FFF8E6;
+  --yellow: #FDD05A;
+  --light-yellow: #FFF8E5;
+  --white: #FFFFFF;
+  --pleasant-grey: #434D56;
+  --dark-grey: #25282B;
+  --light-grey: #E8E8E8;
+  --grey: #F9F9FA;
+  --light-text: #949494;
+  --sky-blue: #0ABEF1;
+  --space-grey: #CACCCF;
+}
