@@ -31,21 +31,24 @@ export const Login = () => {
       nonce = crypto.randomBytes(32).toString('hex');
       document.cookie = `nonce=${nonce}`;
     }
-    window.open(
-        `https://oauth.mail.ru/xlogin?client_id=47beccc8bd8c4b2ba04b08c332d4b2d0&response_type=code&scope=&redirect_uri=https%3A%2F%2Fmaster--snazzy-palmier-903703.netlify.app%2Flogin&state=${nonce}`);
+    window.location.href = `https://oauth.mail.ru/xlogin?client_id=47beccc8bd8c4b2ba04b08c332d4b2d0&response_type=code&scope=&redirect_uri=https%3A%2F%2Fmaster--snazzy-palmier-903703.netlify.app%2Flogin&state=${nonce}`;
   }
 
   async function getToken(code: string) {
+    const data = {
+      code: code,
+      redirect_uri: 'https://master--snazzy-palmier-903703.netlify.app/login',
+    };
     try {
-      const response: ITokenResponse = await axios.post('https://oauth.mail.ru/token', {
-        grant_type: 'authorization_code',
-        code: code,
-        redirect_uri: 'https://master--snazzy-palmier-903703.netlify.app/login',
-      }, {
+      const response: ITokenResponse = await axios.post('https://oauth.mail.ru/token', data, {
         auth: {
           username: '47beccc8bd8c4b2ba04b08c332d4b2d0',
           password: '2c289f33abb246ec92d9a1df8cb8cac7',
         },
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
       });
       setCookie('access_token', response.access_token);
       setCookie('refresh_token', response.refresh_token, {days: 30});
