@@ -2,10 +2,12 @@ import React from 'react'
 import './Login.css';
 import Logo from "../../img/logo(dark).svg";
 import LogoText from "../../img/text-logo(dark).png";
+const crypto = require('crypto');
 
 export const Login = () => {
   const onLogin = () => {
-    document.location.href = 'https://oauth.mail.ru/login?client_id=47beccc8bd8c4b2ba04b08c332d4b2d0&response_type=code&scope=userinfo&redirect_uri=https://master--snazzy-palmier-903703.netlify.app/login';
+    const nonce = crypto.randomBytes(32).toString('hex');
+    document.location.href = `https://oauth.mail.ru/xlogin?client_id=47beccc8bd8c4b2ba04b08c332d4b2d0&response_type=code&scope=&redirect_uri=https%3A%2F%2Fmaster--snazzy-palmier-903703.netlify.app%2Flogin&state=${nonce}`;
   }
 
   return (
