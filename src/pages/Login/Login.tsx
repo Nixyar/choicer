@@ -3,6 +3,7 @@ import './Login.css';
 import {useNavigate} from 'react-router';
 import Logo from '../../img/logo(dark).svg';
 import LogoText from '../../img/text-logo(dark).png';
+import MailBtn from './mailru.png';
 import {ITokenResponse} from '../../interfaces/login.interface';
 import axios from 'axios';
 import {getCookie, setCookie} from 'react-use-cookie';
@@ -91,7 +92,7 @@ export const Login = () => {
         </div>
         <div className="login-form">
           <h1 className="login-form__title h1">Добро пожаловать!</h1>
-          <button type="button" onClick={onLogin}>Вход через Mail.ru</button>
+          <img className="login-form__mail-button" onClick={onLogin} src={MailBtn} alt="Вход через mail.ru"/>
         </div>
       </div>
   )
