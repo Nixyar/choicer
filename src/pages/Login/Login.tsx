@@ -38,7 +38,7 @@ export const Login = () => {
   async function getToken(code: string) {
     const data = {
       code: code,
-      redirect_uri: 'https://master--snazzy-palmier-903703.netlify.app/login',
+      redirect_uri: 'https://master--snazzy-palmier-903703.netlify.app',
     };
     const config = {
       auth: {
