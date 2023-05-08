@@ -31,9 +31,9 @@ export const Login = () => {
         <div className="login-form">
           <h1 className="login-form__title h1">Добро пожаловать!</h1>
           <form>
-            <Link to={routes.main}>
+            {/*<Link to={routes.main}>*/}
               <button onClick={onLogin}>Вход через Mail.ru</button>
-            </Link>
+            {/*</Link>*/}
           </form>
         </div>
       </div>
