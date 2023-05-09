@@ -1,4 +1,7 @@
 .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   padding: 30px 35px;
   color: var(--light-text);
   background-color: var(--light-grey);

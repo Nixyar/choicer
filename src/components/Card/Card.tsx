@@ -42,14 +42,16 @@ export const Card = ({
   return (
       <>
         <div className="card" onClick={onOpenModal}>
-          <h3 className="card-title h3">{title}</h3>
-          <div className="card-curator p4">
-            Куратор:
-            <span><Avatar src={curator.photo}
-                          sx={{width: 34, height: 34, border: 2, borderColor: '#FDD05A'}}/></span>
-            {curator.fullName}
+          <div>
+            <h3 className="card-title h3">{title}</h3>
+            <div className="card-curator p4">
+              Куратор:
+              <span><Avatar src={curator.photo}
+                            sx={{width: 34, height: 34, border: 2, borderColor: '#FDD05A'}}/></span>
+              {curator.fullName}
+            </div>
+            <p className="card-description p3">{description}</p>
           </div>
-          <p className="card-description p3">{description}</p>
           <div className="card__footer p5">
             <span>изменено {editedDays} дней назад</span>
             <span>Участники: {participants}</span>
