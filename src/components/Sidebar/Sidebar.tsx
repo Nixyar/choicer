@@ -1,8 +1,13 @@
 import React, {useState} from 'react';
+import {useNavigate} from 'react-router';
 import {Link, useLocation} from 'react-router-dom';
 import './Sidebar.css';
+import {user} from '../../data/user';
 import Logo from '../../img/logo(light).svg';
 import LogoText from '../../img/text-logo(light).png';
+import {store} from '../../store';
+import {updateUserName} from '../../store/actions/user';
+import {initialState} from '../../store/reducers/user';
 import {ExitIcon} from '../icons/Exit';
 import {HomeIcon} from '../icons/Home';
 import {ProfileIcon} from '../icons/Profile';
@@ -11,6 +16,7 @@ import {routes} from '../../Root';
 
 export const Sidebar = () => {
   let location = useLocation();
+  const navigate = useNavigate();
   const [isHover, setHover] = useState(false);
 
   const setClassNameForAsideNav = (path: string, isExit: boolean = false): string => {
@@ -37,6 +43,11 @@ export const Sidebar = () => {
     setHover(isHover);
   }
 
+  const onLogout = () => {
+    store.dispatch(updateUserName(initialState));
+    navigate(routes.login);
+  }
+
   return (
       <aside className="aside"
              onMouseEnter={() => onToggleHover(true)}
@@ -57,9 +68,9 @@ export const Sidebar = () => {
             <WorksIcon styles={'aside__nav-icon'}/> {isHover ? 'Работы' : null}
           </Link>
         </nav>
-        <Link to={routes.login} className={setClassNameForAsideNav('', true)}>
+        <div className={setClassNameForAsideNav('', true)} onClick={onLogout}>
           <ExitIcon styles={'aside__nav-icon'}/> {isHover ? 'Выйти' : null}
-        </Link>
+        </div>
       </aside>
   )
 }
