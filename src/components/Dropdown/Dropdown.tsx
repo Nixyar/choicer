@@ -8,10 +8,12 @@ import React, {useState} from 'react';
 import {IDropdown} from '../../interfaces/dropdown.interface';
 import './Dropdown.css';
 
-export const Dropdown = ({placeholder, list}: IDropdown) => {
+export const Dropdown = ({placeholder, list, onChange}: IDropdown) => {
   const [item, setItem] = useState('');
   const handleChange = (event: SelectChangeEvent) => {
-    setItem(event.target.value);
+    const value = event.target.value;
+    setItem(value);
+    if (onChange) onChange(value)
   };
 
   return (
@@ -25,8 +27,8 @@ export const Dropdown = ({placeholder, list}: IDropdown) => {
           <MenuItem disabled value="">
             <em>{placeholder}</em>
           </MenuItem>
-          {list.map((item) => (
-              <MenuItem key={item.label} value={item.label}>{item.label}</MenuItem>
+          {list.map((item: any) => (
+              <MenuItem key={item.label || item} value={item.label || item}>{item.label || item}</MenuItem>
           ))}
         </Select>
       </FormControl>

@@ -31,5 +31,3 @@ export const courses = [
   { label: '3'},
   { label: '4'}
 ];
-
-export const filtersList = [typeWorks, teachers, courses];
