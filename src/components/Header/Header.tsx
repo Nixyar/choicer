@@ -11,13 +11,32 @@ import React, {useState} from 'react'
 import './Header.css';
 import {useLocation} from 'react-router-dom';
 import {cards} from '../../data/cards';
+import {ICard} from '../../interfaces/home.interface';
 import {routes} from '../../Root';
 import {LoopIcon} from '../icons/Loop';
+import {ModalCard} from '../ModalCard/ModalCard';
+import ClickAwayListener from '@mui/base/ClickAwayListener';
 
 export const Header = () => {
   let location = useLocation();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isOpenModal, setOpenModal] = useState(false);
   const [searchValue, setSearchValue] = useState('');
+  const [searchCard, setSearchCard] = useState({
+    id: 1,
+    title: 'Автоматизация переработки сырья',
+    curator: {
+      photo: '',
+      fullName: 'Захаренко Андрей Альбертович'
+    },
+    works: [],
+    description: 'Предлагаю к просмотру следущее видео по ссылке, чтобы подробно рассмотреть этот процесс.',
+    editedDays: 5,
+    participants: null,
+  });
+
+  const onOpenModal = () => setOpenModal(true);
+  const onCloseModal = () => setOpenModal(false);
 
   const handleSearchFocus = () => {
     setIsSearchOpen(true);
@@ -41,43 +60,54 @@ export const Header = () => {
     return location.pathname === routes.works || location.pathname === routes.createWork;
   }
 
+  const selectSearchItem = (card: ICard): void => {
+    // @ts-ignore
+    setSearchCard(card);
+    onOpenModal();
+  }
+
   return (
-      <header className="header">
-        {!checkLocationWorkPath() ?
-            <FormControl>
-              <TextField
-                  sx={{width: 563}}
-                  onChange={handleSearch}
-                  placeholder="Поиск работы / преподавателя"
-                  onFocus={handleSearchFocus}
-                  onBlur={handleSearchBlur}
-                  InputProps={{
-                    startAdornment: (
-                        <InputAdornment position="start">
-                          <LoopIcon/>
-                        </InputAdornment>
-                    ),
-                  }}
-              />
-              <List className="header__search-list" sx={{ position: 'absolute', padding: 0 }}>
-                {searchValue.length && isSearchOpen ? filteredData.map((item) => (
-                    <ListItem key={item.id} className="header__search-list-item">
-                      <ListItemText
-                          primary={item.title}
-                          secondary={`Куратор: ${item.curator.fullName}`}
-                      />
-                    </ListItem>
-                )) : null}
-              </List>
-            </FormControl> :
-            <div className="header__works h5">
-              <h3>Работы</h3>
-            </div>
-        }
-        <div className="header__profile">
-          <Avatar src="" sx={{width: 60, height: 60, border: 2, borderColor: '#FDD05A'}}/>
-          <p className="header__profile-info p2">Михаил Глуховский</p>
-        </div>
-      </header>
+      <>
+        <header className="header">
+          {!checkLocationWorkPath() ?
+              <ClickAwayListener onClickAway={handleSearchBlur}>
+                <FormControl>
+                  <TextField
+                      sx={{width: 563}}
+                      onChange={handleSearch}
+                      placeholder="Поиск работы / преподавателя"
+                      onFocus={handleSearchFocus}
+                      InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                              <LoopIcon/>
+                            </InputAdornment>
+                        ),
+                      }}
+                  />
+                  <List className="header__search-list" sx={{ position: 'absolute', padding: 0 }}>
+                    {searchValue.length && isSearchOpen ? filteredData.map((item) => (
+                        <ListItem key={item.id} className="header__search-list-item" onClick={() => selectSearchItem(item)}>
+                          <ListItemText
+                              primary={item.title}
+                              secondary={`Куратор: ${item.curator.fullName}`}
+                          />
+                        </ListItem>
+                    )) : null}
+                  </List>
+                </FormControl>
+              </ClickAwayListener>
+               :
+              <div className="header__works h5">
+                <h3>Работы</h3>
+              </div>
+          }
+          <div className="header__profile">
+            <Avatar src="" sx={{width: 60, height: 60, border: 2, borderColor: '#FDD05A'}}/>
+            <p className="header__profile-info p2">Михаил Глуховский</p>
+          </div>
+        </header>
+        <ModalCard isOpen={isOpenModal} card={searchCard} onChangeClose={onCloseModal}/>
+      </>
   )
 }

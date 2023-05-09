@@ -45,8 +45,7 @@ export const Home = () => {
                     editedDays={item.editedDays}
                     participants={item.participants}
                     title={item.title}
-                    works={item.works}
-                    id={item.id}/>
+                    works={item.works}/>
           ))}
         </div>
       </>
