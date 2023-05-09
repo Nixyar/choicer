@@ -8,7 +8,6 @@ import {routes} from '../../Root';
 import {IStore} from '../../store';
 import {CreateWork} from '../CreateWork/CreateWork';
 import {Home} from '../Home/Home';
-import {Login} from '../Login/Login';
 import {Profile} from '../Profile/Profile';
 import {Works} from '../Works/Works';
 
