@@ -8,6 +8,7 @@ import {routes} from '../../Root';
 import {IStore} from '../../store';
 import {CreateWork} from '../CreateWork/CreateWork';
 import {Home} from '../Home/Home';
+import {Login} from '../Login/Login';
 import {Profile} from '../Profile/Profile';
 import {Works} from '../Works/Works';
 
@@ -29,6 +30,7 @@ export const Main = () => {
             <Route path={routes.profile} element={<Profile/>}/>
             <Route path={routes.works} element={<Works/>}/>
             <Route path={routes.createWork} element={<CreateWork/>}/>
+            <Route path={routes.other} element={<Home/>}/>
           </Routes>
         </main>
       </div>
