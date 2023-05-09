@@ -1,5 +1,5 @@
 import {Avatar, Box, Fade, Button} from '@mui/material';
-import React from 'react';
+import React, {useState} from 'react';
 import './Card.css';
 import {ICard} from '../../interfaces/home.interface';
 import Modal from '@mui/material/Modal';
@@ -10,18 +10,26 @@ export const Card = ({
   participants,
   title,
   editedDays,
-  files,
-  size,
-  type,
-  isRequired,
-  endOfDate,
+  works
 }: ICard) => {
-  const [isOpenModal, setOpenModal] = React.useState(false);
+  const [isOpenModal, setOpenModal] = useState(false);
+  const [isInProcessWorks, setIsInProcessWorks] = useState([]);
   const onOpenModal = () => setOpenModal(true);
   const onCloseModal = () => setOpenModal(false);
 
-  const submitCard = (): void => {
-    onCloseModal();
+  const submitWork = (id: any) => {
+    setIsInProcessWorks((prevIds: any) => {
+      if (prevIds.includes(id)) {
+        return prevIds.filter((buttonId: any) => buttonId !== id);
+      } else {
+        return [...prevIds, id];
+      }
+    });
+  };
+
+  const checkActiveWork = (workId: any): boolean => {
+    // @ts-ignore
+    return isInProcessWorks.includes(workId);
   }
 
   const formatData = (data: Date | string): string => {
@@ -67,23 +75,37 @@ export const Card = ({
                   <div>Преподаватель</div>
                 </div>
               </div>
-              <div className="card-modal__table p3">
-                <div>
-                  <p>Тип работы:</p><p>{type}</p>
-                </div>
-                <div>
-                  <p>Сроки:</p><p>{formatData(endOfDate)}</p>
-                </div>
-                <div>
-                  <p>Объем:</p><p>{size} страниц</p>
-                </div>
-                <div>
-                  <p>Выполнение:</p><p>{isRequired ? 'Обязательно' : 'Необязательно'}</p>
-                </div>
-              </div>
-              <div className="card-modal__files p2">Вложения: {files.length}</div>
-              <div className="card-modal__button">
-                <Button variant="contained" onClick={submitCard}>Отправить отклик</Button>
+              <div className="card-modal__works">
+                {works.map(work => (
+                    <div className="card-modal__work" key={work.title}>
+                      <h4 className="card-modal__work-title h4">{work.title}</h4>
+                      <div className="card-modal__table p3">
+                        <div>
+                          <p>Тип работы:</p><p>{work.type}</p>
+                        </div>
+                        <div>
+                          <p>Сроки:</p><p>{formatData(work.endOfDate)}</p>
+                        </div>
+                        <div>
+                          <p>Объем:</p><p>{work.size} страниц</p>
+                        </div>
+                        <div>
+                          <p>Выполнение:</p><p>{work.isRequired ? 'Обязательно' : 'Необязательно'}</p>
+                        </div>
+                      </div>
+                      <div className="card-modal__files p2">Вложения: {work.files.length}</div>
+                      <div className="card-modal__button">
+                        <Button variant="contained"
+                                style={{
+                                  backgroundColor: checkActiveWork(work.title) ? "#6ab04c" : "#3f51b5",
+                                  color: checkActiveWork(work.title) ? "#fff" : "#fff",
+                                }}
+                                onClick={() => submitWork(work.title)}>
+                          {checkActiveWork(work.title) ? 'Отменить отклик' : 'Отправить отклик'}
+                        </Button>
+                      </div>
+                    </div>
+                ))}
               </div>
             </Box>
           </Fade>
