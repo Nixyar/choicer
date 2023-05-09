@@ -1,10 +1,12 @@
 import React from 'react'
+import {Provider} from 'react-redux';
 import {Route, Routes} from 'react-router';
 import {CreateWork} from './pages/CreateWork/CreateWork';
 import {Login} from './pages/Login/Login';
 import {Main} from './pages/Main/Main';
 import {Profile} from './pages/Profile/Profile';
 import {Works} from './pages/Works/Works';
+import {store} from './store';
 
 export const routes = {
   main: '/',
@@ -16,13 +18,15 @@ export const routes = {
 
 export const Root = () => {
   return (
-      <Routes>
-        <Route path={routes.login} element={<Login/>}></Route>
-        <Route path={routes.main} element={<Main/>}>
-          <Route path={routes.profile} element={<Profile/>}/>
-          <Route path={routes.works} element={<Works/>}/>
-          <Route path={routes.createWork} element={<CreateWork/>}/>
-        </Route>
-      </Routes>
+      <Provider store={store}>
+        <Routes>
+          <Route path={routes.login} element={<Login/>}/>
+          <Route path={routes.main} element={<Main/>}>
+            <Route path={routes.profile} element={<Profile/>}/>
+            <Route path={routes.works} element={<Works/>}/>
+            <Route path={routes.createWork} element={<CreateWork/>}/>
+          </Route>
+        </Routes>
+      </Provider>
   );
 }

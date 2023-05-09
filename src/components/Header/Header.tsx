@@ -9,16 +9,19 @@ import {
 } from '@mui/material';
 import React, {useState} from 'react'
 import './Header.css';
+import {useSelector} from 'react-redux';
 import {useLocation} from 'react-router-dom';
 import {cards} from '../../data/cards';
 import {ICard} from '../../interfaces/home.interface';
 import {routes} from '../../Root';
+import {IStore} from '../../store';
 import {LoopIcon} from '../icons/Loop';
 import {ModalCard} from '../ModalCard/ModalCard';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 
 export const Header = () => {
   let location = useLocation();
+  const user = useSelector((state: IStore) => state.user);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isOpenModal, setOpenModal] = useState(false);
   const [searchValue, setSearchValue] = useState('');
@@ -103,8 +106,8 @@ export const Header = () => {
               </div>
           }
           <div className="header__profile">
-            <Avatar src="" sx={{width: 60, height: 60, border: 2, borderColor: '#FDD05A'}}/>
-            <p className="header__profile-info p2">Михаил Глуховский</p>
+            <Avatar src={user.photo} sx={{width: 60, height: 60, border: 2, borderColor: '#FDD05A'}}/>
+            <p className="header__profile-info p2">{`${user.firstname}${user.lastname}${user.middlename}`}</p>
           </div>
         </header>
         <ModalCard isOpen={isOpenModal} card={searchCard} onChangeClose={onCloseModal}/>
