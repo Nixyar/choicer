@@ -58,7 +58,7 @@ export const Login = () => {
     // } catch (error) {
     //   console.error(error);
     // }
-    navigate(routes.works);
+    navigate(routes.main);
   }
 
   async function getUserInfo() {
@@ -66,7 +66,7 @@ export const Login = () => {
     try {
       const response = await axios.get(`https://oauth.mail.ru/userinfo?access_token=${access_token}`);
       console.log(response);
-      navigate(routes.works);
+      navigate(routes.main);
     } catch (error) {
       console.error(error);
     }
