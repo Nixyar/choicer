@@ -7,4 +7,5 @@ export interface IUser {
   faculty: string;
   formEducation: string;
   role: string;
+  photo: string;
 }

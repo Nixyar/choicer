@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import './Login.css';
 import {useNavigate} from 'react-router';
+import {user} from '../../data/user';
 import Logo from '../../img/logo(dark).svg';
 import LogoText from '../../img/text-logo(dark).png';
 import MailBtn from '../../img/mailru.png';
@@ -8,6 +9,8 @@ import {ITokenResponse} from '../../interfaces/login.interface';
 import axios from 'axios';
 import {getCookie, setCookie} from 'react-use-cookie';
 import {routes} from '../../Root';
+import {updateUserName} from '../../store/actions/user';
+import {store} from '../../store';
 
 const crypto = require('crypto');
 
@@ -27,12 +30,14 @@ export const Login = () => {
   }, []);
 
   const onLogin = () => {
-    let nonce = getCookie('nonce');
-    if (!nonce) {
-      nonce = crypto.randomBytes(32).toString('hex');
-      document.cookie = `nonce=${nonce}`;
-    }
-    window.location.href = `https://oauth.mail.ru/xlogin?client_id=47beccc8bd8c4b2ba04b08c332d4b2d0&response_type=code&scope=&redirect_uri=https%3A%2F%2Fmaster--snazzy-palmier-903703.netlify.app%2Flogin&state=${nonce}`;
+    store.dispatch(updateUserName(user))
+    navigate(routes.main);
+    // let nonce = getCookie('nonce');
+    // if (!nonce) {
+    //   nonce = crypto.randomBytes(32).toString('hex');
+    //   document.cookie = `nonce=${nonce}`;
+    // }
+    // window.location.href = `https://oauth.mail.ru/xlogin?client_id=47beccc8bd8c4b2ba04b08c332d4b2d0&response_type=code&scope=&redirect_uri=https%3A%2F%2Fmaster--snazzy-palmier-903703.netlify.app%2Flogin&state=${nonce}`;
   }
 
   async function getToken(code: string) {
@@ -58,7 +63,6 @@ export const Login = () => {
     // } catch (error) {
     //   console.error(error);
     // }
-    navigate(routes.main);
   }
 
   async function getUserInfo() {
