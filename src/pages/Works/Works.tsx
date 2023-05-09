@@ -1,11 +1,11 @@
 import {Button} from '@mui/material';
-import React from 'react';
+import React, {useState} from 'react';
 import './Works.css';
 import {Link} from 'react-router-dom';
 import {routes} from '../../Root';
 
 export const Works = () => {
-  const [activeTab, setActiveTab] = React.useState('blank');
+  const [activeTab, setActiveTab] = useState('blank');
 
   const setTab = (tabName: string): void => {
     setActiveTab(tabName);

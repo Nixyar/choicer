@@ -3,16 +3,22 @@ export interface ICurator {
   fullName: string;
 }
 
-export interface ICard {
+export interface IWork {
   title: string;
-  curator: ICurator;
-  description: string;
-  editedDays: number;
-  participants: [] | null;
-  type: string;
+  type: 'курсовая' | 'дипломная' | 'доклад';
   endOfDate: Date | string;
   size: number;
   isRequired: boolean;
   files: any[];
   isTakeToWork: boolean;
+}
+
+export interface ICard {
+  id: number;
+  title: string;
+  curator: ICurator;
+  works: IWork[];
+  description: string;
+  editedDays: number;
+  participants: [] | null;
 }

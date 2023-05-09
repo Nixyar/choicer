@@ -6,7 +6,7 @@ import {
   ToggleButton,
   ToggleButtonGroup,
 } from '@mui/material';
-import React from 'react';
+import React, {useState} from 'react';
 import './CreateWork.css';
 import {FileUploader} from 'react-drag-drop-files';
 import {useNavigate} from 'react-router';
@@ -15,10 +15,10 @@ import {routes} from '../../Root';
 
 export const CreateWork = () => {
   const navigate = useNavigate();
-  const [work, setWork] = React.useState('курсовая');
-  const [course, setCourse] = React.useState('');
-  const [workName, setWorkName] = React.useState('');
-  const [files, setFile] = React.useState(null);
+  const [work, setWork] = useState('курсовая');
+  const [course, setCourse] = useState('');
+  const [workName, setWorkName] = useState('');
+  const [files, setFile] = useState(null);
 
   const checkDisableSubmit = (): boolean => {
     return !work || !course || !workName;

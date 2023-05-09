@@ -4,12 +4,12 @@ import {
   SelectChangeEvent,
   FormControl,
 } from '@mui/material';
-import React from 'react';
+import React, {useState} from 'react';
 import {IDropdown} from '../../interfaces/dropdown.interface';
 import './Dropdown.css';
 
 export const Dropdown = ({placeholder, list}: IDropdown) => {
-  const [item, setItem] = React.useState('');
+  const [item, setItem] = useState('');
   const handleChange = (event: SelectChangeEvent) => {
     setItem(event.target.value);
   };

@@ -25,13 +25,8 @@ export const Home = () => {
                     editedDays={item.editedDays}
                     participants={item.participants}
                     title={item.title}
-                    endOfDate={item.endOfDate}
-                    type={item.type}
-                    size={item.size}
-                    isRequired={item.isRequired}
-                    files={item.files}
-                    isTakeToWork={item.isTakeToWork}
-              />
+                    works={item.works}
+                    id={item.id}/>
           ))}
         </div>
       </>
