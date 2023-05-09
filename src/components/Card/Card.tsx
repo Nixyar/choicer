@@ -1,7 +1,7 @@
 import {Avatar, Box, Fade, Button} from '@mui/material';
 import React from 'react';
 import './Card.css';
-import {ICard} from '../../interfaces/Home.interface';
+import {ICard} from '../../interfaces/home.interface';
 import Modal from '@mui/material/Modal';
 
 export const Card = ({

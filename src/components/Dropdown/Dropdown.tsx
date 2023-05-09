@@ -5,7 +5,7 @@ import {
   FormControl,
 } from '@mui/material';
 import React from 'react';
-import {IDropdown} from '../../interfaces/Dropdown.interface';
+import {IDropdown} from '../../interfaces/dropdown.interface';
 import './Dropdown.css';
 
 export const Dropdown = ({placeholder, list}: IDropdown) => {
