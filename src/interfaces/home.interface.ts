@@ -14,10 +14,10 @@ export interface IWork {
 }
 
 export interface ICard {
-  id: number;
+  id?: number;
   title: string;
   curator: ICurator;
-  works: IWork[];
+  works: IWork[] | [];
   description: string;
   editedDays: number;
   participants: [] | null;
