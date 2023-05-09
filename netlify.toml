@@ -9,8 +9,8 @@
   publish = "build"
 
 [[redirects]]
-from = "/*"
-to = "/index.html"
+from = "/api/*"
+to = "https://oauth.mail.ru/:splat"
 status = 200
 
 [[headers]]
