@@ -20,6 +20,7 @@
 }
 
 .card-title {
+  height: 64px;
   color: var(--pleasant-grey);
 }
 
