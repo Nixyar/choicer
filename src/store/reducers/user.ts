@@ -1,6 +1,6 @@
 import {IUser} from '../../interfaces/user.interfaces';
 
-const initialState: IUser = {
+export const initialState: IUser = {
   firstname: '',
   middlename: '',
   lastname: '',

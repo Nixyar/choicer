@@ -14,6 +14,7 @@ export const routes = {
   profile: '/profile',
   works: '/works',
   createWork: '/create-work',
+  other: '/*',
 };
 
 export const Root = () => {
@@ -26,6 +27,7 @@ export const Root = () => {
             <Route path={routes.works} element={<Works/>}/>
             <Route path={routes.createWork} element={<CreateWork/>}/>
           </Route>
+          <Route path={routes.other} element={<Login/>}/>
         </Routes>
       </Provider>
   );
