@@ -8,6 +8,6 @@ export const user: IUser = {
   phone: '+79776672562',
   faculty: 'Факультет разработки Choicer',
   formEducation: 'очная',
-  role: 'student',
+  role: 'admin',
   photo: 'https://gamerwall.pro/uploads/posts/2022-09/1662423388_1-gamerwall-pro-p-krutoi-kot-v-ochkakh-krasivo-1.jpg'
 };
