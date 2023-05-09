@@ -1,10 +1,13 @@
 import {Button} from '@mui/material';
 import React, {useState} from 'react';
 import './Works.css';
+import {useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {routes} from '../../Root';
+import {IStore} from '../../store';
 
 export const Works = () => {
+  const user = useSelector((state: IStore) => state.user);
   const [activeTab, setActiveTab] = useState('blank');
 
   const setTab = (tabName: string): void => {
@@ -20,11 +23,11 @@ export const Works = () => {
   return (
       <>
         <div className="works__create-work">
-          <Link to={routes.createWork}>
+          {user.role === 'admin' ? <Link to={routes.createWork}>
             <Button variant="outlined" sx={{border: '2px solid #FDD05A', borderRadius: '40px'}}>
               Создать работу
             </Button>
-          </Link>
+          </Link> : null}
         </div>
         <div className="works__tabs p3--line-height">
           <div className={classWithActiveTab('blank')} onClick={() => setTab('blank')}>
