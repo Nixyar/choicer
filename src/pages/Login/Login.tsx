@@ -3,7 +3,7 @@ import './Login.css';
 import {useNavigate} from 'react-router';
 import Logo from '../../img/logo(dark).svg';
 import LogoText from '../../img/text-logo(dark).png';
-import MailBtn from './mailru.png';
+import MailBtn from '../../img/mailru.png';
 import {ITokenResponse} from '../../interfaces/login.interface';
 import axios from 'axios';
 import {getCookie, setCookie} from 'react-use-cookie';
@@ -36,28 +36,29 @@ export const Login = () => {
   }
 
   async function getToken(code: string) {
-    const data = {
-      code: code,
-      redirect_uri: 'https://master--snazzy-palmier-903703.netlify.app',
-    };
-    const config = {
-      auth: {
-        username: '47beccc8bd8c4b2ba04b08c332d4b2d0',
-        password: '2c289f33abb246ec92d9a1df8cb8cac7',
-      },
-      withCredentials: true,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    };
-    try {
-      const response: ITokenResponse = await axios.post('https://oauth.mail.ru/token', data, config);
-      setCookie('access_token', response.access_token);
-      setCookie('refresh_token', response.refresh_token, {days: 30});
-      getUserInfo().then();
-    } catch (error) {
-      console.error(error);
-    }
+    // const data = {
+    //   code: code,
+    //   redirect_uri: 'https://master--snazzy-palmier-903703.netlify.app',
+    // };
+    // const config = {
+    //   auth: {
+    //     username: '47beccc8bd8c4b2ba04b08c332d4b2d0',
+    //     password: '2c289f33abb246ec92d9a1df8cb8cac7',
+    //   },
+    //   withCredentials: true,
+    //   headers: {
+    //     'Content-Type': 'application/x-www-form-urlencoded'
+    //   }
+    // };
+    // try {
+    //   const response: ITokenResponse = await axios.post('https://oauth.mail.ru/token', data, config);
+    //   setCookie('access_token', response.access_token);
+    //   setCookie('refresh_token', response.refresh_token, {days: 30});
+    //   getUserInfo().then();
+    // } catch (error) {
+    //   console.error(error);
+    // }
+    navigate(routes.works);
   }
 
   async function getUserInfo() {
