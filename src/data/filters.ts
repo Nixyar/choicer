@@ -19,12 +19,6 @@ export const typeWorks = [
   { label: 'доклад' },
 ];
 
-export const teachers = [
-  { label: 'Рожкова М.Н.'},
-  { label: 'Михалкова Н.К.'},
-  { label: 'Гарева К.Н.'}
-];
-
 export const courses = [
   { label: '1'},
   { label: '2'},

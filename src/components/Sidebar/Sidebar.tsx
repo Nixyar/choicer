@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import {useNavigate} from 'react-router';
 import {Link, useLocation} from 'react-router-dom';
 import './Sidebar.css';
-import {user} from '../../data/user';
 import Logo from '../../img/logo(light).svg';
 import LogoText from '../../img/text-logo(light).png';
 import {store} from '../../store';
