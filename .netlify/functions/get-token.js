@@ -1,6 +1,7 @@
 const axios = require('axios');
 
 exports.handler = async function(event, context) {
+  console.log('test');
   const { code } = event.queryStringParameters;
 
   if (!code) {
@@ -15,8 +16,7 @@ exports.handler = async function(event, context) {
       code,
       redirect_uri: 'https://snazzy-palmier-903703.netlify.app/login',
       client_id: 'bfc815235bb84333947c6a44e91684cd',
-      client_secret: 'b456b855c91648c4a3a59806bd0c4769',
-      grant_type: 'authorization_code'
+      client_secret: 'b456b855c91648c4a3a59806bd0c4769'
     });
 
     return {

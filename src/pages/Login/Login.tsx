@@ -44,7 +44,6 @@ export const Login = () => {
 
   async function getToken(code: string) {
     const data = {
-      grant_type: 'authorization_code',
       code: code,
       redirect_uri: 'https://snazzy-palmier-903703.netlify.app/login',
     };
