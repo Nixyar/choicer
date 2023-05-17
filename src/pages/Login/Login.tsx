@@ -47,17 +47,18 @@ export const Login = () => {
       code: code,
       redirect_uri: 'https://snazzy-palmier-903703.netlify.app/login',
     };
-    const config = {
+    const headers = {
       auth: {
         username: 'bfc815235bb84333947c6a44e91684cd',
         password: 'b456b855c91648c4a3a59806bd0c4769',
       },
+      withCredentials: false,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     };
     try {
-      const response: ITokenResponse = await axios.post('https://oauth.mail.ru/token', data, config);
+      const response: ITokenResponse = await axios.post('https://oauth.mail.ru/token', data, headers);
       setCookie('access_token', response.access_token);
       setCookie('refresh_token', response.refresh_token, {days: 30});
       getUserInfo().then();
