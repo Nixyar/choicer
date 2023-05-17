@@ -55,7 +55,7 @@ export const Login = () => {
       }
     };
     try {
-      const response: ITokenResponse = await axios.post('https://oauth.mail.ru/token', data, config);
+      const response: ITokenResponse = await axios.post('https://cors-anywhere.herokuapp.com/https://oauth.mail.ru/token', data, config);
       setCookie('access_token', response.access_token);
       setCookie('refresh_token', response.refresh_token, {days: 30});
       getUserInfo().then();
