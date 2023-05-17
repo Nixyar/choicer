@@ -35,7 +35,11 @@ export const Login = () => {
       nonce = crypto.randomBytes(32).toString('hex');
       document.cookie = `nonce=${nonce}`;
     }
-    window.location.href = `https://oauth.mail.ru/xlogin?client_id=bfc815235bb84333947c6a44e91684cd&response_type=code&scope=&redirect_uri=https%3A%2F%2Fsnazzy-palmier-903703.netlify.app%2Flogin&state=${nonce}`;
+    const redirectUri = 'https://snazzy-palmier-903703.netlify.app/login';
+    const clientId = 'bfc815235bb84333947c6a44e91684cd';
+    const responseType = 'code';
+
+    window.location.href = `https://oauth.mail.ru/login?client_id=${clientId}&response_type=${responseType}&scope=&redirect_uri=${redirectUri}&state=${nonce}`;
   }
 
   async function getToken(code: string) {
