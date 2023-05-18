@@ -1,15 +1,21 @@
 import {IUser} from '../../interfaces/user.interfaces';
 
 export const initialState: IUser = {
-  firstname: '',
-  middlename: '',
-  lastname: '',
+  birthday: '',
+  client_id: '',
   email: '',
+  first_name: '',
+  gender: '',
+  id: '',
+  image: '',
+  last_name: '',
+  name: '',
+  nickname: '',
+  role: '',
   phone: '',
   faculty: '',
-  formEducation: '',
-  role: '',
-  photo: '',
+  formEducation: ''
+
 };
 
 export const userReducer = (state = initialState, action: any) => {

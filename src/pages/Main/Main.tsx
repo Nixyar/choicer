@@ -16,7 +16,7 @@ export const Main = () => {
   const user = useSelector((state: IStore) => state.user);
 
   useEffect(() => {
-    if (user.firstname === '') navigate(routes.login);
+    if (user.first_name === '') navigate(routes.login);
   }, [])
 
   return (

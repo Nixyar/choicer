@@ -66,10 +66,9 @@ export const Login = () => {
     try {
       const access_token = getCookie('access_token');
       const body = { access_token };
-      const response: IUser = await axios.post(LoginApi.GET_USER, body);
-      return console.log(response);
-      // store.dispatch(setUserName(response))
-      // navigate(routes.main);
+      const response = await axios.post(LoginApi.GET_USER, body);
+      store.dispatch(setUserName(response.data))
+      navigate(routes.main);
     } catch (error) {
       return console.error(error);
     }

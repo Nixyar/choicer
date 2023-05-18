@@ -12,10 +12,10 @@ export const Profile = () => {
 
   return (
       <div className="profile">
-        <Avatar src={user.photo} sx={{width: 220, height: 220, border: 2, borderColor: '#FDD05A'}}/>
+        <Avatar src={user.image} sx={{width: 220, height: 220, border: 2, borderColor: '#FDD05A'}}/>
         <div className="profile-info">
           <div className="profile-info__head">
-            <h1 className="profile-info__fio h2">{`${user.firstname}${user.lastname}${user.middlename}`}</h1>
+            <h1 className="profile-info__fio h2">{`${user.first_name}${user.last_name}`}</h1>
             <Link to={routes.main} className="profile-info__head-link p3">
               Перейти на основную страницу профиля
               <span><ArrowIcon></ArrowIcon></span>

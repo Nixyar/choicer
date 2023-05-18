@@ -106,8 +106,8 @@ export const Header = () => {
               </div>
           }
           <div className="header__profile">
-            <Avatar src={user.photo} sx={{width: 60, height: 60, border: 2, borderColor: '#FDD05A'}}/>
-            <p className="header__profile-info p2">{`${user.firstname}${user.lastname}${user.middlename}`}</p>
+            <Avatar src={user.image} sx={{width: 60, height: 60, border: 2, borderColor: '#FDD05A'}}/>
+            <p className="header__profile-info p2">{`${user.first_name}${user.last_name}`}</p>
           </div>
         </header>
         <ModalCard isOpen={isOpenModal} card={searchCard} onChangeClose={onCloseModal}/>
