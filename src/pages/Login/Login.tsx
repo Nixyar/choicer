@@ -17,14 +17,13 @@ const crypto = require('crypto');
 
 export const Login = () => {
   const navigate = useNavigate();
-  const accessToken = getCookie('access_token');
 
   useEffect(() => {
     init();
-  }, [accessToken]);
+  }, []);
 
   const init = () => {
-    if (accessToken) {
+    if (getCookie('access_token')) {
       getUserInfo().then();
     } else {
       const urlSearchParams = new URLSearchParams(window.location.search);
@@ -54,7 +53,8 @@ export const Login = () => {
       const response = await axios.post(LoginApi.GET_TOKEN, data);
       setCookie('access_token', response.data.access_token);
       setCookie('refresh_token', response.data.refresh_token, {days: 30});
-      await getUserInfo().then();
+      return console.log(getCookie('access_token'), getCookie('refresh_token'));
+      // await getUserInfo().then();
     } catch (error) {
       return console.error(error);
     }
