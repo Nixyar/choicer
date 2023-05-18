@@ -1,8 +1,12 @@
 import { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
 import axios from 'axios';
 
+interface ITokenBody {
+  code: string;
+}
+
 const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
-  const code = event.body;
+  const code: string = JSON.parse(event.body + '').code;
 
   try {
     const response = await axios.post('https://oauth.mail.ru/token', {
@@ -13,7 +17,7 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
     });
     return {
       statusCode: 200,
-      body: JSON.stringify(code),
+      body: JSON.stringify(response.data),
     };
   } catch (error) {
     console.error(error);
