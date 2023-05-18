@@ -9,7 +9,7 @@ import axios from 'axios';
 import {getCookie, setCookie} from 'react-use-cookie';
 import {IUser} from '../../interfaces/user.interfaces';
 import {routes} from '../../Root';
-import {updateUserName} from '../../store/actions/user';
+import {setUserName} from '../../store/actions/user';
 import {store} from '../../store';
 
 const crypto = require('crypto');
@@ -18,16 +18,18 @@ export const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    init();
+  }, []);
+
+  const init = () => {
     if (getCookie('access_token')) {
       getUserInfo();
     } else {
       const urlSearchParams = new URLSearchParams(window.location.search);
       const code = urlSearchParams.get('code');
-      if (code) {
-        getToken(code).then();
-      }
+      if (code) getToken(code).then();
     }
-  }, []);
+  }
 
   const onLogin = () => {
     let nonce = getCookie('nonce');
@@ -42,28 +44,18 @@ export const Login = () => {
     window.location.href = `https://oauth.mail.ru/login?client_id=${clientId}&response_type=${responseType}&scope=&redirect_uri=${redirectUri}&state=${nonce}`;
   }
 
-  async function getToken(code: string) {
+  const getToken = async (code: string) => {
     const data = {
-      code: code,
-      redirect_uri: 'https://snazzy-palmier-903703.netlify.app/login',
-    };
-    const headers = {
-      auth: {
-        username: 'bfc815235bb84333947c6a44e91684cd',
-        password: 'b456b855c91648c4a3a59806bd0c4769',
-      },
-      withCredentials: false,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
+      code: code
     };
     try {
-      const response: ITokenResponse = await axios.post('https://oauth.mail.ru/token', data, headers);
-      setCookie('access_token', response.access_token);
-      setCookie('refresh_token', response.refresh_token, {days: 30});
-      getUserInfo().then();
+      const response: ITokenResponse = await axios.post('/token', data);
+      return console.log(response);
+      // setCookie('access_token', response.access_token);
+      // setCookie('refresh_token', response.refresh_token, {days: 30});
+      // await getUserInfo().then();
     } catch (error) {
-      console.error(error);
+      return console.error(error);
     }
   }
 
@@ -71,11 +63,11 @@ export const Login = () => {
     const access_token = getToken('access_token');
     try {
       const response: IUser = await axios.get(`https://oauth.mail.ru/userinfo?access_token=${access_token}`);
-      console.log(response);
-      store.dispatch(updateUserName(response))
-      navigate(routes.main);
+      return console.log(response);
+      // store.dispatch(setUserName(response))
+      // navigate(routes.main);
     } catch (error) {
-      console.error(error);
+      return console.error(error);
     }
   }
 
