@@ -29,7 +29,7 @@ export const Login = () => {
     } else {
       const urlSearchParams = new URLSearchParams(window.location.search);
       const code = urlSearchParams.get('code');
-      if (code) getToken(code).then();
+      if (code) getToken(code).then(() => getUserInfo());
     }
   }
 
@@ -65,8 +65,9 @@ export const Login = () => {
     };
     try {
       const response: IUser = await axios.post(LoginApi.GET_USER, body);
-      store.dispatch(setUserName(response))
-      navigate(routes.main);
+      return console.log(response);
+      // store.dispatch(setUserName(response))
+      // navigate(routes.main);
     } catch (error) {
       return console.error(error);
     }
