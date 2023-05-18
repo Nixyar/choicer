@@ -1,7 +1,8 @@
-const axios = require('axios');
+import { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
+import axios from 'axios';
 
-exports.handler = async function(event, context) {
-  const { code } = event.queryStringParameters;
+const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
+  const code = event.body;
 
   try {
     const response = await axios.post('https://oauth.mail.ru/token', {
@@ -22,3 +23,5 @@ exports.handler = async function(event, context) {
     };
   }
 };
+
+export { handler };
