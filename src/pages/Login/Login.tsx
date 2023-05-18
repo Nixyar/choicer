@@ -19,12 +19,10 @@ export const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log('useEffect called');
     init().then();
   }, []);
 
   const init = async () => {
-    console.log('init called');
     const token = getCookie('access_token');
     if (token && token !== 'undefined') {
       await getUserInfo();
@@ -66,7 +64,7 @@ export const Login = () => {
 
   async function getUserInfo() {
     try {
-      const access_token = await getToken('access_token');
+      const access_token = getCookie('access_token');
       const body = { access_token };
       const response: IUser = await axios.post(LoginApi.GET_USER, body);
       return console.log(response);
