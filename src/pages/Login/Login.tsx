@@ -23,7 +23,7 @@ export const Login = () => {
   }, []);
 
   const init = () => {
-    if (getCookie('access_token')) {
+    if (getCookie('access_token') && getCookie('access_token') !== 'undefined') {
       getUserInfo().then();
     } else {
       const urlSearchParams = new URLSearchParams(window.location.search);
