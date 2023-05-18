@@ -53,7 +53,7 @@ export const Login = () => {
       const response = await axios.post(LoginApi.GET_TOKEN, data);
       setCookie('access_token', response.data.access_token);
       setCookie('refresh_token', response.data.refresh_token, {days: 30});
-      getUserInfo().then();
+      // getUserInfo().then();
     } catch (error) {
       return console.error(error);
     }
@@ -65,9 +65,8 @@ export const Login = () => {
     };
     try {
       const response: IUser = await axios.post(LoginApi.GET_USER, body);
-      return console.log(response);
-      // store.dispatch(setUserName(response))
-      // navigate(routes.main);
+      store.dispatch(setUserName(response))
+      navigate(routes.main);
     } catch (error) {
       return console.error(error);
     }
