@@ -23,7 +23,8 @@ export const Login = () => {
   }, []);
 
   const init = () => {
-    if (getCookie('access_token') && getCookie('access_token') !== 'undefined') {
+    const token = getCookie('access_token');
+    if (token && token !== 'undefined') {
       getUserInfo().then();
     } else {
       const urlSearchParams = new URLSearchParams(window.location.search);
@@ -53,7 +54,6 @@ export const Login = () => {
       const response = await axios.post(LoginApi.GET_TOKEN, data);
       setCookie('access_token', response.data.access_token);
       setCookie('refresh_token', response.data.refresh_token, {days: 30});
-      // getUserInfo().then();
     } catch (error) {
       return console.error(error);
     }
