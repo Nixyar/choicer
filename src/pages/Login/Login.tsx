@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import './Login.css';
 import {useNavigate} from 'react-router';
-import {LoginApi} from '../../api/login';
+import {LoginApi} from '../../api/login.api';
 import Logo from '../../img/logo(dark).svg';
 import LogoText from '../../img/text-logo(dark).png';
 import MailBtn from '../../img/mailru.png';
@@ -24,7 +24,7 @@ export const Login = () => {
 
   const init = () => {
     if (getCookie('access_token')) {
-      getUserInfo();
+      getUserInfo().then();
     } else {
       const urlSearchParams = new URLSearchParams(window.location.search);
       const code = urlSearchParams.get('code');
@@ -51,19 +51,20 @@ export const Login = () => {
     };
     try {
       const response: ITokenResponse = await axios.post(LoginApi.GET_TOKEN, data);
-      return console.log(response);
-      // setCookie('access_token', response.access_token);
-      // setCookie('refresh_token', response.refresh_token, {days: 30});
-      // await getUserInfo().then();
+      setCookie('access_token', response.access_token);
+      setCookie('refresh_token', response.refresh_token, {days: 30});
+      await getUserInfo().then();
     } catch (error) {
       return console.error(error);
     }
   }
 
   async function getUserInfo() {
-    const access_token = getToken('access_token');
+    const body = {
+      access_token: getToken('access_token')
+    };
     try {
-      const response: IUser = await axios.get(`https://oauth.mail.ru/userinfo?access_token=${access_token}`);
+      const response: IUser = await axios.post(LoginApi.GET_USER, body);
       return console.log(response);
       // store.dispatch(setUserName(response))
       // navigate(routes.main);
