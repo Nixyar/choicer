@@ -28,7 +28,7 @@ export const Login = () => {
     } else {
       const urlSearchParams = new URLSearchParams(window.location.search);
       const code = urlSearchParams.get('code');
-      if (code) getToken(code).then();
+      if (code) getToken(code).then(() => getUserInfo());
     }
   }
 
