@@ -17,13 +17,14 @@ const crypto = require('crypto');
 
 export const Login = () => {
   const navigate = useNavigate();
+  const accessToken = getCookie('access_token');
 
   useEffect(() => {
     init();
-  }, []);
+  }, [accessToken]);
 
   const init = () => {
-    if (getCookie('access_token')) {
+    if (accessToken) {
       getUserInfo().then();
     } else {
       const urlSearchParams = new URLSearchParams(window.location.search);
