@@ -28,7 +28,8 @@
 .profile-info__main {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 20px 5px;
+  align-items: center;
   padding-top: 50px;
-  gap: 20px 0;
   border-top: 1px solid var(--light-grey);
 }
