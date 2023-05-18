@@ -66,6 +66,7 @@
 
 .aside__nav-icon:last-child {
   margin-bottom: 0;
+  cursor: pointer;
 }
 
 .aside__nav-link {
