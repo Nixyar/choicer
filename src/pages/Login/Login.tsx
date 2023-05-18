@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import './Login.css';
 import {useNavigate} from 'react-router';
-import {LoginApi} from '../../../api/login';
+import {LoginApi} from '../../api/login';
 import Logo from '../../img/logo(dark).svg';
 import LogoText from '../../img/text-logo(dark).png';
 import MailBtn from '../../img/mailru.png';
