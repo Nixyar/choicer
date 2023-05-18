@@ -50,8 +50,9 @@ export const Login = () => {
       code: code
     };
     try {
-      const response: ITokenResponse = await axios.post(LoginApi.GET_TOKEN, data);
-      return console.log(response);
+      const response = await axios.post(LoginApi.GET_TOKEN, data);
+      console.log(response.data);
+      return console.log(response.data.access_token);
       // setCookie('access_token', response.access_token);
       // setCookie('refresh_token', response.refresh_token, {days: 30});
       // await getUserInfo().then();
