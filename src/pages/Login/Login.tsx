@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import './Login.css';
 import {useNavigate} from 'react-router';
+import {LoginApi} from '../../../api/login';
 import Logo from '../../img/logo(dark).svg';
 import LogoText from '../../img/text-logo(dark).png';
 import MailBtn from '../../img/mailru.png';
@@ -49,7 +50,7 @@ export const Login = () => {
       code: code
     };
     try {
-      const response: ITokenResponse = await axios.post('/token', data);
+      const response: ITokenResponse = await axios.post(LoginApi.GET_TOKEN, data);
       return console.log(response);
       // setCookie('access_token', response.access_token);
       // setCookie('refresh_token', response.refresh_token, {days: 30});
