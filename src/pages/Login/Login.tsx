@@ -19,17 +19,20 @@ export const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    init();
+    init().then();
   }, []);
 
-  const init = () => {
+  const init = async () => {
     const token = getCookie('access_token');
     if (token && token !== 'undefined') {
-      getUserInfo().then();
+      await getUserInfo();
     } else {
       const urlSearchParams = new URLSearchParams(window.location.search);
       const code = urlSearchParams.get('code');
-      if (code) getToken(code).then(() => getUserInfo());
+      if (code) {
+        await getToken(code);
+        await getUserInfo();
+      }
     }
   }
 
