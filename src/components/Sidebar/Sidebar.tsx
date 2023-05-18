@@ -5,7 +5,7 @@ import './Sidebar.css';
 import Logo from '../../img/logo(light).svg';
 import LogoText from '../../img/text-logo(light).png';
 import {store} from '../../store';
-import {updateUserName} from '../../store/actions/user';
+import {setUserName} from '../../store/actions/user';
 import {initialState} from '../../store/reducers/user';
 import {ExitIcon} from '../icons/Exit';
 import {HomeIcon} from '../icons/Home';
@@ -43,7 +43,7 @@ export const Sidebar = () => {
   }
 
   const onLogout = () => {
-    store.dispatch(updateUserName(initialState));
+    store.dispatch(setUserName(initialState));
     navigate(routes.login);
   }
 

@@ -7,6 +7,7 @@
 
 [build]
   publish = "build"
+  functions = "netlify/functions"
 
 [[redirects]]
 from = "/*"
