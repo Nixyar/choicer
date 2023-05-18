@@ -47,11 +47,11 @@ export const Login = () => {
   }
 
   const getToken = async (code: string) => {
-    const data = {
+    const body = {
       code: code
     };
     try {
-      const response = await axios.post(LoginApi.GET_TOKEN, data);
+      const response = await axios.post(LoginApi.GET_TOKEN, body);
       setCookie('access_token', response.data.access_token);
       setCookie('refresh_token', response.data.refresh_token, {days: 30});
     } catch (error) {
@@ -60,10 +60,9 @@ export const Login = () => {
   }
 
   async function getUserInfo() {
-    const body = {
-      access_token: getToken('access_token')
-    };
     try {
+      const access_token = await getToken('access_token');
+      const body = { access_token };
       const response: IUser = await axios.post(LoginApi.GET_USER, body);
       return console.log(response);
       // store.dispatch(setUserName(response))
