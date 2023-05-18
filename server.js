@@ -39,7 +39,7 @@ app.post(LoginApi.GET_TOKEN, async (req, res) => {
   try {
     const body = {
       code: postData.code,
-      redirect_uri: 'https://snazzy-palmier-903703.netlify.app/login',
+      redirect_uri: 'https://choicer.netlify.app/login',
       grant_type: 'authorization_code'
     };
 

@@ -5,10 +5,8 @@ import {LoginApi} from '../../api/login.api';
 import Logo from '../../img/logo(dark).svg';
 import LogoText from '../../img/text-logo(dark).png';
 import MailBtn from '../../img/mailru.png';
-import {ITokenResponse} from '../../interfaces/login.interface';
 import axios from 'axios';
 import {getCookie, setCookie} from 'react-use-cookie';
-import {IUser} from '../../interfaces/user.interfaces';
 import {routes} from '../../Root';
 import {setUserName} from '../../store/actions/user';
 import {store} from '../../store';
@@ -42,7 +40,7 @@ export const Login = () => {
       nonce = crypto.randomBytes(32).toString('hex');
       document.cookie = `nonce=${nonce}`;
     }
-    const redirectUri = 'https://snazzy-palmier-903703.netlify.app/login';
+    const redirectUri = 'https://choicer.netlify.app/login';
     const clientId = 'bfc815235bb84333947c6a44e91684cd';
     const responseType = 'code';
 
