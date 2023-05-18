@@ -19,10 +19,12 @@ export const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log('useEffect called');
     init().then();
   }, []);
 
   const init = async () => {
+    console.log('init called');
     const token = getCookie('access_token');
     if (token && token !== 'undefined') {
       await getUserInfo();
