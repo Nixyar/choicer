@@ -46,16 +46,14 @@ const updateToken = async () => {
 }
 
 const getUserInfo = async () => {
-  const navigate = useNavigate();
-
-  console.log('getUserInfo');
-
+  // const navigate = useNavigate();
   try {
     const access_token = getCookie('access_token');
     const body = { access_token };
     const response = await axios.post(LoginApi.GET_USER, body);
     store.dispatch(setUserName(response.data))
-    navigate(routes.main);
+    // navigate(routes.main);
+    return Promise.resolve(response.data);
   } catch (error) {
     return console.error(error);
   }
