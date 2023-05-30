@@ -21,7 +21,7 @@ export const routes = {
 export const Root = () => {
   useEffect(() => {
     const initUser = init();
-    initUser.then(console.log);
+    initUser.then((res) => console.log(res));
   }, []);
 
   return (
