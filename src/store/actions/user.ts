@@ -1,12 +1,11 @@
 import axios from 'axios/index';
-import {useNavigate} from 'react-router';
 import {getCookie, setCookie} from 'react-use-cookie';
 import {LoginApi} from '../../api/login.api';
 import {IUser} from '../../interfaces/user.interfaces';
-import {routes} from '../../Root';
 import {store} from '../index';
 
 export const actions = {
+  INIT_USER: 'INIT_USER',
   SET_USER: 'SET_USER',
 };
 
@@ -46,13 +45,11 @@ const updateToken = async () => {
 }
 
 const getUserInfo = async () => {
-  const navigate = useNavigate();
   try {
     const access_token = getCookie('access_token');
     const body = { access_token };
     const response = await axios.post(LoginApi.GET_USER, body);
     store.dispatch(setUserName(response.data))
-    navigate(routes.main);
     return Promise.resolve(response.data);
   } catch (error) {
     return Promise.reject(error);

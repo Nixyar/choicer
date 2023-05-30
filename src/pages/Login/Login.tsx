@@ -1,13 +1,24 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import './Login.css';
+import {useSelector} from 'react-redux';
+import {useNavigate} from 'react-router';
 import Logo from '../../img/logo(dark).svg';
 import LogoText from '../../img/text-logo(dark).png';
 import MailBtn from '../../img/mailru.png';
 import {getCookie} from 'react-use-cookie';
+import {routes} from '../../Root';
+import {IStore} from '../../store';
 
 const crypto = require('crypto');
 
 export const Login = () => {
+  const navigate = useNavigate();
+  const user = useSelector((state: IStore) => state.user);
+
+  useEffect(() => {
+    if (user.email.length) navigate(routes.main);
+  }, []);
+
   const onLogin = () => {
     let nonce = getCookie('nonce');
 

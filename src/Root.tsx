@@ -20,7 +20,7 @@ export const routes = {
 
 export const Root = () => {
   useEffect(() => {
-    init().then();
+    init().then(console.log);
   }, []);
 
   return (
