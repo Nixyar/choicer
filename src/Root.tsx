@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import {Provider} from 'react-redux';
-import {Route, Routes} from 'react-router';
+import {Route, Routes, useNavigate} from 'react-router';
 import {CreateWork} from './pages/CreateWork/CreateWork';
 import {Login} from './pages/Login/Login';
 import {Main} from './pages/Main/Main';
@@ -19,10 +19,23 @@ export const routes = {
 };
 
 export const Root = () => {
+  const navigate = useNavigate();
+
   useEffect(() => {
-    const initUser = init();
-    initUser.then((res) => console.log(res));
-  }, []);
+    const initUser = async () => {
+      try {
+        const initialized = await init();
+
+        if (initialized) {
+          navigate(routes.main);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    initUser().then();
+  }, [navigate]);
 
   return (
       <Provider store={store}>

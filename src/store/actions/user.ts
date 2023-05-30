@@ -78,6 +78,7 @@ export const init = async () => {
         }
       }
     }
+    return Promise.resolve(true);
   } catch (error) {
     return Promise.reject(error);
   }
