@@ -35,7 +35,7 @@ export const Root = () => {
     };
 
     initUser().then();
-  }, [navigate]);
+  }, []);
 
   return (
       <Provider store={store}>

@@ -60,6 +60,7 @@ const getUserInfo = async () => {
 export const init = async () => {
   const accessToken = getCookie('access_token');
   const refreshToken = getCookie('refresh_token');
+  let initialized = false;
 
   try {
     if (!accessToken && refreshToken) {
@@ -68,6 +69,7 @@ export const init = async () => {
     } else {
       if (accessToken && accessToken !== 'undefined') {
         await getUserInfo();
+        initialized = true;
       } else {
         const urlSearchParams = new URLSearchParams(window.location.search);
         const code = urlSearchParams.get('code');
@@ -75,10 +77,11 @@ export const init = async () => {
         if (code) {
           await getToken(code);
           await getUserInfo();
+          initialized = true;
         }
       }
     }
-    return Promise.resolve(true);
+    return initialized;
   } catch (error) {
     return Promise.reject(error);
   }
