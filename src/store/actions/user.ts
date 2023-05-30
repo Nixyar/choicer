@@ -45,8 +45,10 @@ const updateToken = async () => {
   }
 }
 
-async function getUserInfo() {
+const getUserInfo = async () => {
   const navigate = useNavigate();
+
+  console.log('getUserInfo');
 
   try {
     const access_token = getCookie('access_token');
@@ -60,11 +62,10 @@ async function getUserInfo() {
 }
 
 export const init = async () => {
-  console.log('init');
   const accessToken = getCookie('access_token');
   const refreshToken = getCookie('refresh_token');
 
-  // if (!accessToken && refreshToken) return updateToken();
+  if (!accessToken && refreshToken) return updateToken();
 
   if (accessToken && accessToken !== 'undefined') {
     await getUserInfo();
