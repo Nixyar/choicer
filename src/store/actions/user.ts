@@ -61,9 +61,9 @@ async function getUserInfo() {
 
 export const init = async () => {
   const accessToken = getCookie('access_token');
-  const refreshToken = getCookie('refresh_token');
-
-  if (!accessToken && refreshToken) return await updateToken();
+  // const refreshToken = getCookie('refresh_token');
+  //
+  // if (!accessToken && refreshToken) return await updateToken();
 
   if (accessToken && accessToken !== 'undefined') {
     await getUserInfo();
