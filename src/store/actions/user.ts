@@ -66,6 +66,7 @@ export const init = async () => {
     if (!accessToken && refreshToken) {
       await updateToken();
       await getUserInfo();
+      initialized = true;
     } else {
       if (accessToken && accessToken !== 'undefined') {
         await getUserInfo();
