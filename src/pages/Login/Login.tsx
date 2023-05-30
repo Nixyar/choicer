@@ -1,75 +1,26 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import './Login.css';
-import {useNavigate} from 'react-router';
-import {LoginApi} from '../../api/login.api';
 import Logo from '../../img/logo(dark).svg';
 import LogoText from '../../img/text-logo(dark).png';
 import MailBtn from '../../img/mailru.png';
-import axios from 'axios';
-import {getCookie, setCookie} from 'react-use-cookie';
-import {routes} from '../../Root';
-import {setUserName} from '../../store/actions/user';
-import {store} from '../../store';
+import {getCookie} from 'react-use-cookie';
 
 const crypto = require('crypto');
 
 export const Login = () => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    init().then();
-  }, []);
-
-  const init = async () => {
-    const token = getCookie('access_token');
-    if (token && token !== 'undefined') {
-      await getUserInfo();
-    } else {
-      const urlSearchParams = new URLSearchParams(window.location.search);
-      const code = urlSearchParams.get('code');
-      if (code) {
-        await getToken(code);
-        await getUserInfo();
-      }
-    }
-  }
-
   const onLogin = () => {
     let nonce = getCookie('nonce');
+
     if (!nonce) {
       nonce = crypto.randomBytes(32).toString('hex');
       document.cookie = `nonce=${nonce}`;
     }
+
     const redirectUri = 'https://choicer.netlify.app/login';
     const clientId = 'bfc815235bb84333947c6a44e91684cd';
     const responseType = 'code';
 
     window.location.href = `https://oauth.mail.ru/login?client_id=${clientId}&response_type=${responseType}&scope=&redirect_uri=${redirectUri}&state=${nonce}`;
-  }
-
-  const getToken = async (code: string) => {
-    const body = {
-      code: code
-    };
-    try {
-      const response = await axios.post(LoginApi.GET_TOKEN, body);
-      setCookie('access_token', response.data.access_token);
-      setCookie('refresh_token', response.data.refresh_token, {days: 30});
-    } catch (error) {
-      return console.error(error);
-    }
-  }
-
-  async function getUserInfo() {
-    try {
-      const access_token = getCookie('access_token');
-      const body = { access_token };
-      const response = await axios.post(LoginApi.GET_USER, body);
-      store.dispatch(setUserName(response.data))
-      navigate(routes.main);
-    } catch (error) {
-      return console.error(error);
-    }
   }
 
   return (

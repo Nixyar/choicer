@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {Provider} from 'react-redux';
 import {Route, Routes} from 'react-router';
 import {CreateWork} from './pages/CreateWork/CreateWork';
@@ -7,6 +7,7 @@ import {Main} from './pages/Main/Main';
 import {Profile} from './pages/Profile/Profile';
 import {Works} from './pages/Works/Works';
 import {store} from './store';
+import {init} from './store/actions/user';
 
 export const routes = {
   main: '/',
@@ -18,6 +19,10 @@ export const routes = {
 };
 
 export const Root = () => {
+  useEffect(() => {
+    init().then();
+  }, []);
+
   return (
       <Provider store={store}>
         <Routes>
