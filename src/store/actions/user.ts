@@ -5,7 +5,6 @@ import {IUser} from '../../interfaces/user.interfaces';
 import {store} from '../index';
 
 export const actions = {
-  INIT_USER: 'INIT_USER',
   SET_USER: 'SET_USER',
 };
 
@@ -23,8 +22,9 @@ const getToken = async (code: string) => {
     const thirtyDaysInMinutes = 30 * 24 * 60;
     setCookie('access_token', response.data.access_token, { days: expirationTimeInDays });
     setCookie('refresh_token', response.data.refresh_token, { days: thirtyDaysInMinutes });
+    return Promise.resolve();
   } catch (error) {
-    return console.error(error);
+    return Promise.reject(error);
   }
 }
 
@@ -39,8 +39,9 @@ const updateToken = async () => {
     const response = await axios.post(LoginApi.UPDATE_TOKEN, body);
     const expirationTimeInDays = Math.ceil(response.data.expires_in / (24 * 60 * 60));
     setCookie('access_token', response.data.access_token, { days: expirationTimeInDays });
+    return Promise.resolve();
   } catch (error) {
-    return console.error(error);
+    return Promise.reject(error);
   }
 }
 
@@ -60,17 +61,24 @@ export const init = async () => {
   const accessToken = getCookie('access_token');
   const refreshToken = getCookie('refresh_token');
 
-  if (!accessToken && refreshToken) return updateToken();
-
-  if (accessToken && accessToken !== 'undefined') {
-    await getUserInfo();
-  } else {
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    const code = urlSearchParams.get('code');
-
-    if (code) {
-      await getToken(code);
+  try {
+    if (!accessToken && refreshToken) {
+      await updateToken();
       await getUserInfo();
+    } else {
+      if (accessToken && accessToken !== 'undefined') {
+        await getUserInfo();
+      } else {
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const code = urlSearchParams.get('code');
+
+        if (code) {
+          await getToken(code);
+          await getUserInfo();
+        }
+      }
     }
+  } catch (error) {
+    return Promise.reject(error);
   }
 }
